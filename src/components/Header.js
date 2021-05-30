@@ -3,14 +3,17 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
-    <header className="App-header">
+    <header>
       <h1>Numbas</h1>
-      <Link to="/" className="links">
-        <button>Home</button>
-      </Link>
-      <Link to="/Charts" className="links">
-        <button>Chart</button>
-      </Link>
+
+      <div className="nav">
+        <Link to="/" className="links">
+          <button>Home</button>
+        </Link>
+        <Link to="/Charts" className="links">
+          <button>Chart</button>
+        </Link>
+      </div>
     </header>
   );
 };

@@ -1,55 +1,51 @@
-.App {
-  text-align: center;
+@import "./misc.scss";
+@import "./home.scss";
+@import "./chart.scss";
+
+$primary: #f9c784;
+$secondary: #9d695a;
+
+body {
+  background-color: $secondary;
 }
 
-.spinner {
-  -webkit-animation-name: spin;
-  -webkit-animation-duration: 4000ms;
-  -webkit-animation-iteration-count: infinite;
-  -webkit-animation-timing-function: linear;
-  -moz-animation-name: spin;
-  -moz-animation-duration: 4000ms;
-  -moz-animation-iteration-count: infinite;
-  -moz-animation-timing-function: linear;
-  -ms-animation-name: spin;
-  -ms-animation-duration: 4000ms;
-  -ms-animation-iteration-count: infinite;
-  -ms-animation-timing-function: linear;
+.app {
+  margin: 10px;
+  background-color: $primary;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
 
-  animation-name: spin;
-  animation-duration: 4000ms;
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
-}
-@-ms-keyframes spin {
-  from {
-    -ms-transform: rotate(0deg);
-  }
-  to {
-    -ms-transform: rotate(360deg);
+  .cont {
+    border-top: 2px solid black;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
   }
 }
-@-moz-keyframes spin {
-  from {
-    -moz-transform: rotate(0deg);
-  }
-  to {
-    -moz-transform: rotate(360deg);
-  }
-}
-@-webkit-keyframes spin {
-  from {
-    -webkit-transform: rotate(0deg);
-  }
-  to {
-    -webkit-transform: rotate(360deg);
-  }
-}
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-right: 10px;
+  margin-left: 10px;
+  height: 10vh;
+
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 150px;
+
+    button {
+      border-color: transparent;
+      border-radius: 5px;
+      cursor: pointer;
+      &:hover {
+        transform: scale3d(0.9, 0.9, 1);
+        transition-duration: 0.3s;
+        border-color: black;
+      }
+    }
   }
 }
