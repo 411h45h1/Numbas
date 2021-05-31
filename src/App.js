@@ -49,7 +49,7 @@ const App = () => {
               <Switch>
                 <Route exact path="/" component={Home} />
                 <Route exact path="/Login-Register" component={OnBoard} />
-                <Route path="/Charts" component={Charts} />
+                <AuthRoute path="/Charts" component={Charts} />
               </Switch>
             </Suspense>
           </div>
