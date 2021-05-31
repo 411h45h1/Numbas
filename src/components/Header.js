@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import AppContext from "../core/context/appContext";
 
-const Header = (props) => {
+const Header = () => {
   const LogoutButton = () => {
     const state = useContext(AppContext);
     const { loggedIn, onLogout } = state;
@@ -10,10 +10,11 @@ const Header = (props) => {
       <button onClick={() => onLogout()}>Logout</button>
     ) : (
       <Link to="/Login-Register" className="links">
-        <button>Sign Up</button>
+        <button>Login/Register</button>
       </Link>
     );
   };
+
   return (
     <header>
       <h1>Numbas</h1>

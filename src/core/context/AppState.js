@@ -11,16 +11,18 @@ const AppState = (props) => {
   const initialState = {
     loggedIn: false,
     cryptoData: null,
+    localCurrency: "USD",
   };
   const [state, dispatch] = useReducer(appReducer, initialState);
-  const { loggedIn, cryptoData } = state;
+  const { localCurrency, cryptoData } = state;
 
-  const getCrypto = () => {
+  const getCrypto = async () => {
     const apiKey = "e4826edb95b2db3a52e4eae14cc3d6d91c5ef158";
-    const coins = "BTC,ETH,ADA,DOT";
+
     const interval = "1h,30d,365d";
-    fetch(
-      `https://api.nomics.com/v1/currencies/ticker?key=${apiKey}&ids=${coins}&interval=${interval}`
+
+    return await fetch(
+      `https://api.nomics.com/v1/currencies/ticker?key=${apiKey}&interval=${interval}&convert=${localCurrency}&per-page=100&page=1`
     )
       .then((response) => response.json())
       .then((data) =>
@@ -36,10 +38,10 @@ const AppState = (props) => {
   useEffect(() => {
     authCheck();
 
-    if (!cryptoData && loggedIn) {
+    if (!cryptoData) {
       onGetCrypto();
     }
-  }, [onGetCrypto, cryptoData, loggedIn]);
+  }, [onGetCrypto, cryptoData]);
 
   const authCheck = () =>
     firebase.auth().onAuthStateChanged((user) =>

@@ -5,7 +5,7 @@ import { signInUser } from "../core/api/auth";
 const Register = () => {
   const [email, setEmail] = useState({ value: "", error: "" });
   const [password, setPassword] = useState({ value: "", error: "" });
-  const [loading, setLoading] = useState(false);
+  //  const [loading, setLoading] = useState(false);
   const [error, setError] = useState();
 
   const handleSignUp = async () => {
@@ -17,7 +17,7 @@ const Register = () => {
       setPassword({ password: "", error: passwordError });
     }
 
-    setLoading(true);
+    //  setLoading(true);
 
     const response = await signInUser({
       email: email.value,
@@ -26,7 +26,7 @@ const Register = () => {
 
     if (response.error) {
       setError(response.error);
-      setLoading(false);
+      //  setLoading(false);
     }
   };
 
