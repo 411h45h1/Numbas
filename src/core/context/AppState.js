@@ -33,7 +33,7 @@ const AppState = (props) => {
       );
   };
 
-  const onGetCrypto = useCallback(getCrypto, []);
+  const onGetCrypto = useCallback(getCrypto, [localCurrency]);
 
   useEffect(() => {
     authCheck();

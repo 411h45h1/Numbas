@@ -3,9 +3,10 @@ import { Link } from "react-router-dom";
 import AppContext from "../core/context/appContext";
 
 const Header = () => {
+  const state = useContext(AppContext);
+  const { loggedIn, onLogout } = state;
+
   const LogoutButton = () => {
-    const state = useContext(AppContext);
-    const { loggedIn, onLogout } = state;
     return loggedIn === true ? (
       <button onClick={() => onLogout()}>Logout</button>
     ) : (
@@ -25,9 +26,11 @@ const Header = () => {
         <Link to="/" className="links">
           <button>Home</button>
         </Link>
-        <Link to="/Charts" className="links">
-          <button>Chart</button>
-        </Link>
+        {loggedIn && (
+          <Link to="/Charts" className="links">
+            <button>Chart</button>
+          </Link>
+        )}
       </div>
     </header>
   );
