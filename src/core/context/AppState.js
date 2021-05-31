@@ -25,6 +25,9 @@ const AppState = (props) => {
       `https://api.nomics.com/v1/currencies/ticker?key=${apiKey}&interval=${interval}&convert=${localCurrency}&per-page=100&page=1`,
       {
         mode: "cors",
+        headers: {
+          "access-control-allow-origin": "*",
+        },
       }
     )
       .then((response) => response.json())
