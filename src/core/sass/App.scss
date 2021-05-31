@@ -35,17 +35,18 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    width: 150px;
+    width: 250px;
+  }
+}
 
-    button {
-      border-color: transparent;
-      border-radius: 5px;
-      cursor: pointer;
-      &:hover {
-        transform: scale3d(0.9, 0.9, 1);
-        transition-duration: 0.3s;
-        border-color: black;
-      }
-    }
+button {
+  border-color: transparent;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  &:hover {
+    transform: scale3d(0.9, 0.9, 1);
+    transition-duration: 0.3s;
+    border-color: black;
   }
 }

@@ -1,18 +1,39 @@
 import "./core/sass/App.scss";
-import { Suspense } from "react";
-import { Provider } from "react-redux";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { createStore } from "redux";
-import chartReducer from "./core/context/core/reducers/chartReducer";
+import { Suspense, useContext } from "react";
+import {
+  BrowserRouter as Router,
+  Redirect,
+  Route,
+  Switch,
+} from "react-router-dom";
 import Header from "./components/Header";
 import { CgSpinnerTwoAlt } from "react-icons/cg";
-import { Home, Charts } from "./pages";
-
-const state = createStore(chartReducer);
+import { Home, Charts, OnBoard } from "./pages";
+import AppState from "./core/context/AppState";
+import AppContext from "./core/context/appContext";
 
 const App = () => {
+  const AuthRoute = ({ component: Component, ...rest }) => {
+    const state = useContext(AppContext);
+    const { loggedIn } = state;
+    return (
+      <Route
+        {...rest}
+        render={(props) =>
+          loggedIn === true ? (
+            <Component {...props} />
+          ) : (
+            <Redirect
+              to={{ pathname: "/login", state: { from: props.location } }}
+            />
+          )
+        }
+      />
+    );
+  };
+
   return (
-    <Provider store={state}>
+    <AppState>
       <Router>
         <div className="app">
           <Header />
@@ -27,13 +48,14 @@ const App = () => {
             >
               <Switch>
                 <Route exact path="/" component={Home} />
+                <Route exact path="/Login-Register" component={OnBoard} />
                 <Route path="/Charts" component={Charts} />
               </Switch>
             </Suspense>
           </div>
         </div>
       </Router>
-    </Provider>
+    </AppState>
   );
 };
 
