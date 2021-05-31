@@ -22,7 +22,10 @@ const AppState = (props) => {
     const interval = "1h,30d,365d";
 
     return await fetch(
-      `https://api.nomics.com/v1/currencies/ticker?key=${apiKey}&interval=${interval}&convert=${localCurrency}&per-page=100&page=1`
+      `https://api.nomics.com/v1/currencies/ticker?key=${apiKey}&interval=${interval}&convert=${localCurrency}&per-page=100&page=1`,
+      {
+        mode: "cors",
+      }
     )
       .then((response) => response.json())
       .then((data) =>
